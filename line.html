@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>入门·折线图</title>
+    <!--引入 echarts-->
+    <script src="js/echarts.min.js"></script>
+</head>
+<body>
+<!--准备一个容器-->
+    <div id="main" style="width:900px;height: 600px;"></div>
+</body>
+<script>
+//    在直方图的基础上多了一条线
+//  基于准备好的dom  初始化echarts实例
+    //用echarts.init 方法获取这个容器
+    let myChaart = echarts.init(document.getElementById('main'));
+    //自定义配置
+    let option = {
+        //标题
+        title:{
+            //是否显示
+            show:true,
+            //标题
+            text:'Echarts 入门实例',
+        },
+        //工具箱
+        toolbox:{
+            show:true,//false隐藏
+            feature:{
+                //是否保存图片
+                saveAsImage:{
+                    show:true
+                }
+            }
+        },
+        //图例
+        legend:{
+            //整个数据的名字
+            data:['销量']
+        },
+        //X轴显示的信息
+        xAxis:{
+            data:['衬衫',"羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+        },
+        //Y轴没有写的话会根据下面数据里自定义的值自动的生成一个Y轴
+        yAxis:{},
+        //数据，以数组的形式可以传多个数据
+        series:[
+//            {
+//            name:'销量',
+//            type:'bar', //直方图
+//            data:[5,20,36,10,10,20] //显示的数据
+//        },
+            {
+            name:'销量',
+            type:'line',  //折线图
+            data:[7,30,5,50,11,46,83]
+        }]
+    };
+    myChaart.setOption(option)
+</script>
+
+ <!--
+ 与直方图一样
+ 就是增加一条数据
+    1.先初始化Echarts实例
+    2.setOption 用指定数据绘图
+    3.Option对象
+        -标题：title
+        -图例：legend
+        -X轴：xAxis
+        -数据：series:
+            name（表名）、type（类型）、data（显示的数据）
+ -->
+</html>

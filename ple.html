@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>入门·饼状图</title>
+    <!--引入 echarts-->
+    <script src="js/echarts.min.js"></script>
+</head>
+<body>
+<!--准备一个容器-->
+    <div id="main" style="width:900px;height: 600px;"></div>
+</body>
+<script>
+//    在直方图的基础上多了一条线
+//  基于准备好的dom  初始化echarts实例
+    //用echarts.init 方法获取这个容器
+    let myChaart = echarts.init(document.getElementById('main'));
+    //自定义配置
+    let option = {
+        //标题
+        title:{
+            //是否显示
+            show:true,
+            //标题
+            text:'Echarts 饼图',
+            //副标题
+            subtext:'学习 Echarts 饼图',
+            //标题居中
+            x:"center"
+            //其他在官方文档配置里可以看
+        },
+        //是否显示提示框组件
+        tooltip:{
+//            数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。
+            trigger:'item',
+            //提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
+            formatter:"{a}<br/>{b} : {c} ({d}%)"
+        },
+        //图例
+        legend:{
+            orient:'vertical',
+            left:'left',
+            //整个数据的名字
+            data:['直接访问','邮件营销','；联盟广告','视频广告','搜索引擎']
+        },
+//        //数据，以数组的形式可以传多个数据
+        series:[{
+            name:'访问涞源',
+            //饼图
+            type:'pie',
+            radius:'55%', //半径大小
+            center:['50%','60%'],//圆心位置 x50% y60%
+            //与上面data绑定
+            data:[
+                {value:335, name:'直接访问'},
+                {value:310, name:'邮件营销'},
+                {value:234, name:'联盟广告'},
+                {value:564, name:'视频广告'},
+                {value:1538, name:'搜索引擎'}
+            ] //显示的数据
+        }]
+    };
+    myChaart.setOption(option)
+</script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>入门·组件</title>
+    <!--引入 echarts-->
+    <script src="js/echarts.min.js"></script>
+</head>
+<body>
+<!--准备一个容器-->
+    <div id="main" style="width:900px;height: 600px;"></div>
+</body>
+<script>
+//    在直方图的基础上多了一条线
+//  基于准备好的dom  初始化echarts实例
+    //用echarts.init 方法获取这个容器
+    let myChaart = echarts.init(document.getElementById('main'));
+    //自定义配置
+    let option = {
+        //标题
+        title:{
+            //是否显示
+            show:true,
+            //标题
+            text:'Echarts 入门实例',
+            //副标题
+            subtext:'学习 Echarts',
+            //边距 数字是像素，也可以是center left
+            left:100,
+            //标题边框的颜色
+            borderColor:'pink',
+            //边框的的大小
+            borderWidth:5,
+            textStyle:{
+                color:"red"
+            }
+            //其他在官方文档配置里可以看
+        },
+        //工具箱
+        toolbox:{
+            show:true,//false隐藏
+            feature:{
+                //是否保存图片
+                saveAsImage:{
+                    show:true
+                },
+                //数据视图工具，可以展现当前图表所用的数据，编辑后可以动态更新。
+                dataView:{
+                    show:true
+                },
+                //配置项还原。
+                restore:{
+                    show:true
+                },
+                //数据区域缩放。目前只支持直角坐标系的缩放。
+                dataZoom:{
+                    show:true
+                },
+                //动态类型切换
+                magicType:{
+                    //  'line'（切换为折线图）  'bar'（切换为柱状图）,
+                    // 'stack'（切换为堆叠模式）, 'tiled'（切换为平铺模式）
+                    type: ['line', 'bar', 'stack', 'tiled']
+                }
+            }
+        },
+        //是否显示提示框组件
+        tooltip:{
+            //坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
+            trigger:"axis"
+            //数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。
+//            trigger:'item'
+        },
+        //图例
+        legend:{
+            //整个数据的名字
+            data:['销量']
+        },
+        //X轴显示的信息
+        xAxis:{
+            data:['衬衫',"羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+        },
+        //Y轴没有写的话会根据下面数据里自定义的值自动的生成一个Y轴
+        yAxis:{},
+        //数据，以数组的形式可以传多个数据
+        series:[{
+            name:'销量',
+            type:'bar', //直方图
+            data:[5,20,36,10,10,20] //显示的数据
+        },{
+            name:'销量',
+            type:'line',  //折线图
+            data:[7,30,5,50,11,46,83]
+        }]
+    };
+    myChaart.setOption(option)
+</script>
+</html>
